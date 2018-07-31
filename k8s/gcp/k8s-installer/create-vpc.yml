@@ -20,3 +20,5 @@
              - name: Test Failed
                set_fact:
                  flag: "Test Failed"
+       - fail:
+         when: flag != "Test Passed"
