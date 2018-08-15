@@ -20,9 +20,9 @@
 # To run the script: `python cluster_health_check.py --nodes 4`
 
 from kubernetes import client, config
+import multiprocessing
 import time
 import argparse
-import signal
 import sys
 
 def timeout_handler(x,y):
@@ -94,9 +94,7 @@ def get_args():
     args = parser.parse_args()
     return args.nodes
 
-signal.signal(signal.SIGALRM, timeout_handler)
-signal.alarm(900)
-if __name__ == '__main__':
+def init():
     nodes = get_args()
     get_kube_config()
     while True:
@@ -108,3 +106,17 @@ if __name__ == '__main__':
             if e == 'timeout':
                 sys.exit(5)
             time.sleep(5)
+
+if __name__ == '__main__':
+    p = multiprocessing.Process(target=init, name="main")
+    p.start()
+
+    # Wait 10 seconds for main
+    time.sleep(900)
+
+    # Terminate main
+    print "Error: time out! Program terminated after 900s"
+    p.terminate()
+
+    # Cleanup
+    p.join()
