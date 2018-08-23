@@ -12,7 +12,8 @@
 
 ---
 - hosts: localhost
-  vars: cluster_name
+  vars: 
+    cluster_name:
   tasks:
     - name: Generating Random Cluster Name
       shell: python ../../utils/name_generator/namesgenerator.py
@@ -37,8 +38,8 @@
     - lineinfile:
         create: yes
         state: present
-        path: '~/logs/clusters'
-        line: '{{ cluster_name }}'
+        path: "~/logs/clusters"
+        line: "{{ cluster_name }}"
 
     - name: Test Passed
       set_fact:
