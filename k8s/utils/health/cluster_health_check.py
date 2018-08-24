@@ -43,10 +43,8 @@ def get_nodes(node_count):
             getNodes = v1.list_node()
             if len(getNodes.items) == int(node_count):
                 return getNodes.items
-            else:
-                time.sleep(30)
-        except Exception:
-            time.sleep(30)
+        except Exception as e:
+            print e
         time.sleep(30)
 
 
