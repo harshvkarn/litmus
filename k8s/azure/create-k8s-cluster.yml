@@ -1,13 +1,9 @@
-# Description:  Generates a random name, & creates a bucket, InstanceGroup object and Initializes
-# VMs running Kubernetes, in accordance to the node_count specified using kops in Google Cloud
+# Description:  
+#
 # Author: Harshvardhan Karn
 ###############################################################################################
 #Steps:
-#1. Generate a random 6 digit string using Python script
-#2. Create a bucket with the generated random Name
-#3. Create the Clusters, InstanceGroup objects and state store in bucket
-#4. Create the k8s Cluster, using VM instances.
-#5. Log a file with the name of Cluster inside /temp/run_id/gcp_cluster
+#
 ###############################################################################################
 
 ---
@@ -16,7 +12,7 @@
     - name: chmod
       shell: chmod +x create-aks.sh
       
-    - name: Delete Azure cluster
+    - name: Create Azure cluster
       shell: |
         export NODE_COUNT=3                                                                                                                                                                                            
         export NODE_VM_SIZE=Standard_D2                                                                                                                                                                                
