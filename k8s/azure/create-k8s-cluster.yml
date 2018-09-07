@@ -15,11 +15,8 @@
   tasks:
     - name: chmod
       shell: chmod +x create-aks.sh
-
-    - name: Test
-      shell: echo $NODE_COUNT
-
-    - name: Create Azure cluster
+      
+    - name: Delete Azure cluster
       shell: |
         export NODE_COUNT=3                                                                                                                                                                                            
         export NODE_VM_SIZE=Standard_D2                                                                                                                                                                                
